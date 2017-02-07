@@ -38,7 +38,6 @@
     (minify :in  "cljsjs/js-joda-timezone/development/js-joda-timezone.inc.js"
             :out "cljsjs/js-joda-timezone/production/js-joda-timezone.min.inc.js")
     (sift :include #{#"^cljsjs"})
-    (deps-cljs :name "quantum.js-joda-timezone")
     (pom)
     (jar)))
 
