@@ -20,8 +20,17 @@
     (download :url (format "https://github.com/js-joda/js-joda/archive/@js-joda/core@%s.zip" +lib-version+)
                 :unzip true)
     (sift :move {#"^js-joda--js-joda-core-([\d\.]+)/packages/core/dist/js-joda.min.js$" "cljsjs/js-joda-core/js-joda.min.js"})
+    (replace-content
+      :in "cljsjs/js-joda-core/js-joda.min.js" :out "cljsjs/js-joda-core/js-joda.min.js"
+      :match (java.util.regex.Pattern/compile  "(.+)$", java.util.regex.Pattern/DOTALL)
+      :value "if(!this.JSJoda) { $1 }")
     
     (sift :move {#"^js-joda--js-joda-core-([\d\.]+)/packages/core/dist/js-joda.js$" "cljsjs/js-joda-core/js-joda.inc.js"})
+    (replace-content
+      :in "cljsjs/js-joda-core/js-joda.inc.js"
+      :out "cljsjs/js-joda-core/js-joda.inc.js"
+      :match (java.util.regex.Pattern/compile  "(.+)$", java.util.regex.Pattern/DOTALL)
+      :value "if(!this.JSJoda) { $1 }")
     
     (sift :include #{#"^cljsjs"})
     (deps-cljs
@@ -31,6 +40,7 @@
                       :requires []
                       :global-exports '{"@js-joda/core" JSJoda}}]
       :externs [#"js-joda.ext.js"])
-    (pom)
+    (pom :project 'henryw374/js-joda
+      :dependencies [])
     (show :fileset true)
     (jar)))
