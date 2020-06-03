@@ -1,11 +1,10 @@
 (set-env!
-  :resource-paths #{"resources"}
   :dependencies '[[cljsjs/boot-cljsjs "0.10.5"  :scope "test"]])
 
 (require '[cljsjs.boot-cljsjs.packaging :refer :all])
 
 (def +lib-version+ "1.12.0")
-(def +version+ (str +lib-version+ "-0"))
+(def +version+ (str +lib-version+ "-2"))
 
 (task-options!
  pom  {:project     'cljsjs/js-joda
@@ -38,8 +37,7 @@
                       :file-min #"js-joda.min.js"
                       :provides ["@js-joda/core"]
                       :requires []
-                      :global-exports '{"@js-joda/core" JSJoda}}]
-      :externs [#"js-joda.ext.js"])
+                      :global-exports '{"@js-joda/core" JSJoda}}])
     (pom :project 'henryw374/js-joda
       :dependencies [])
     (show :fileset true)
