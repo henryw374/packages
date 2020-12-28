@@ -3,8 +3,8 @@
 
 (require '[cljsjs.boot-cljsjs.packaging :refer :all])
 
-(def +lib-version+ "1.12.0")
-(def +version+ (str +lib-version+ "-2"))
+(def +lib-version+ "3.2.0")
+(def +version+ (str +lib-version+ "-0"))
 
 (task-options!
  pom  {:project     'cljsjs/js-joda
